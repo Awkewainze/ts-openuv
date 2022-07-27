@@ -1,0 +1,23 @@
+name: Typedoc
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+      - run: git branch -f docs
+      - run: npm i
+      - run: npm run docs
+      - run: shopt -s extglob
+      - run: rm -rf -v !(docs)
+      - run: cp docs/ .
+      - run: rm -rf docs
+      - run: git push -f origin docs
