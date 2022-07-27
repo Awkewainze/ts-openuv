@@ -19,4 +19,6 @@ jobs:
       - run: cp -r docs /tmp/docs
       - run: rm -rf *
       - run: cp -r /tmp/docs/* .
+      - run: git add .
+      - run: git commit -m "Automated doc gen"
       - run: git push -f origin docs
