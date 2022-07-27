@@ -17,7 +17,7 @@ jobs:
       - run: npm i
       - run: npm run docs
       - run: shopt -s extglob
-      - run: rm -rf -v !(docs)
+      - run: rm -rf -v !("docs")
       - run: cp docs/ .
       - run: rm -rf docs
       - run: git push -f origin docs
