@@ -1,6 +1,6 @@
 {
   "name": "ts-openuv",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Type safe library for using the OpenUV API",
   "source": "src/index.ts",
   "main": "out/index.js",
