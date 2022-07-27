@@ -1,9 +1,5 @@
 import {
-    RealTimeUVResponse,
-    OpenUVParams,
-    ForecastResponse,
-    DailyProtectionTimeResponse,
-    DailyProtectionTimeParams,
+    DailyProtectionTimeParams, DailyProtectionTimeResponse, ForecastResponse, OpenUVParams, RealTimeUVResponse
 } from "./types";
 
 /**
@@ -45,7 +41,7 @@ export async function getDailyProtectionTime(
 }
 
 /**
- * Client that will callthrough to function with original API Key. Just to avoid passing around the API key.
+ * Client that will passthrough to function with original API Key. Just to avoid passing around the API key.
  * If you're going to use a single function, I would just recommend using the functions.
  */
 export class OpenUVClient {
@@ -86,10 +82,13 @@ async function getOptions(options?: OpenUVParams): Promise<OpenUVParams> {
             throw new Error("Geolocation API is not availible, provide lat and lng in parameters");
         }
         let {
-            coords: { latitude: lat, longitude: lng, altitude: alt },
+            coords: { latitude, longitude, altitude },
         } = await new Promise<GeolocationPosition>((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(resolve, reject);
         });
+        lat = latitude;
+        lng = longitude;
+        alt = altitude ?? undefined;
     }
     if (lat && lng) {
         return { lat, lng, alt, ozone, dt };
@@ -99,11 +98,11 @@ async function getOptions(options?: OpenUVParams): Promise<OpenUVParams> {
 }
 
 function createUrlWithParams(endpoint: string, options: { [key: string]: unknown }): string {
-    let { lat, lng, alt, ozone, dt } = options;
-
     const url = new URL(endpoint);
     for (const key in options) {
-        url.searchParams.set(key, String(options[key]));
+        if (options[key]) {
+            url.searchParams.set(key, String(options[key]));
+        }
     }
 
     return url.toString();
