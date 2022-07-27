@@ -1,17 +1,18 @@
 {
   "name": "ts-openuv",
-  "version": "1.0.0",
+  "version": "0.1.1",
   "description": "Type safe library for using the OpenUV API",
   "source": "src/index.ts",
   "main": "out/index.js",
   "module": "out/module.js",
   "types": "out/index.d.ts",
   "sideEffects": false,
+  "repository": "https://github.com/Awkewainze/ts-openuv",
   "scripts": {
-    "watch": "parcel watch",
+    "dev": "parcel watch",
     "build": "parcel build",
-    "docs": "npx typedoc src/index.ts",
-    "test": "jest"
+    "test": "jest",
+    "docs": "npx typedoc src/index.ts"
   },
   "author": "Nova Walseth (Awkewainze)",
   "license": "MIT",
