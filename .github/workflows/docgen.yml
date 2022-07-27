@@ -21,8 +21,7 @@ jobs:
       - run: cp -r /tmp/docs/* .
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          # Optional. Commit message for the created commit.
-          # Defaults to "Apply automatic changes"
-          commit_message: Automated documention generation
+          commit_message: Automated documentation generation
           commit_options: "--no-verify --signoff"
           push_options: "--force"
+          branch: docs
