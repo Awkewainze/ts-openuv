@@ -12,7 +12,8 @@
     "dev": "parcel watch",
     "build": "parcel build",
     "test": "jest",
-    "docs": "npx typedoc src/index.ts"
+    "docs": "npx typedoc src/index.ts",
+    "prepublishOnly": "npm run build"
   },
   "author": "Nova Walseth (Awkewainze)",
   "license": "MIT",
